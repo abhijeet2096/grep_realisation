@@ -10,19 +10,33 @@
 int main(int argc, char *argv[]){
   int i;
   FILE *fr;
+  char file[50];
+  char file_copy[50];
 
    if(argc == 4 && !strcmp(argv[1],"-f")){
          DIR *d;
          struct dirent *dir;
+         strcpy(file,argv[3]);
+           strcat(file,"/");
          d = opendir(argv[3]);
+         if(d==NULL){
+           printf ("Cannot open directory '%s'\n", argv[3]);
+            return 1;
+         }
          if (d)
           {
               while ((dir = readdir(d)) != NULL)
               {
+
                 if(strstr(dir->d_name,".txt")){
-                  fr = fopen ( dir->d_name, "r");
-                  printf("%c%s%c\n",'<', dir->d_name,'>');
+                  strcpy(file_copy,file);
+                  strcat(file_copy,dir->d_name);
+                // printf("\n%s",file_copy);
+                  //printf("%s\n", dir->d_name);
+                  fr = fopen(file_copy, "r");
+                 printf("%c%s%c\n",'<', dir->d_name,'>');
                   findInFile(fr,argv[2]);
+                   fclose(fr);
                 }
               }
               closedir(d);

@@ -1,0 +1,360 @@
+[Last Updated: 22 August 1994]
+
+This is the file "standard.gut" which contains many suggestions
+how to prepare an Etext for release by Project Gutenberg.
+
+Remember:  these are only suggestions.  People send us files in
+a variety of formats, and we are most glad to a little work for
+the purpose of getting them into an easy to read onscreen form.
+
+If you are interesting in editing, please ask for details on an
+extraordinary effort we are making to prepare Etexts in manners
+which will enhance both the readability and searchability of an
+Etext by the elimination of hyphenation and of widow/orphans on
+a line by line basis.  This takes a bit of work, but it results
+in and Etext much easier to read than the paper book from which
+it was taken.  Please ask for "editing.gut".
+
+[editing.gut is currently appended to the bottom of this file.]
+
+No indentations [anywhere other than inserted letters, poems, etc.].
+[Including none for contents, chapter headings, etc.]
+
+No CAPITALIZATION of first word in a chapter, other than first letter.
+
+Obviously, the first thing to do to make sure your chosen books
+are clear of copyright restrictions.  We will be happy to do an
+assortment of copyright searches and write clearance letters.
+
+When you start preparing the Etext, after getting the copyright
+clearance finished:
+
+Please preface the file with your name, address, phone, & email.
+
+Each line of your book should end with a "hard return" = cr/lf.
+In DOS if you save as a DOS Text File, this is the default.
+On Macs, each line needs to end with "end of paragraph marker"
+In UNIX, each line needs to end with ^M.
+
+This is VERY important in establishing the margination, as per
+the new editing policy mentioned above.
+
+We try to average 65, with 55 to 75 being short and long
+other than for emergencies, which will extend to 51 to 79.
+
+
+You can look over any of the Project Gutenberg Etexts to see a
+series of examples of how this works.  You may notice how much
+easier it is to read the latest novels [such as Burroughs] due
+to the elimination of hyphenation, and the remargination of an
+assortment of lines that previous were split with words on the
+preceding or following lines that should have been on the same
+line. . .but were moved for the convenience of the publishers.
+
+
+The entire work should start with the title and end with
+"End of this Project Gutenberg Etext of Name of Book"
+Then three returns.
+
+We would like page numbers at the left column
+for proofreading purposes.
+
+Priorities go with the more important type headers.
+i.e. from end of Chapter to beginning of Part, use Part
+
+Title and Part type headers--5 returns after 6 before
+Chapter headers--3 returns before first line.
+Chapter ends--4 returns before next chapter header.
+Wide paragraph separation--3 returns.
+Normal paragraph separation--2 returns.
+End of line----one return.
+(These are "hard" returns, not "soft" returns.)
+
+
+Don't worry if you can't do all this, or can't do it easily.
+We expect to have to spend about ten hours on each book from
+the time we start editing it until it is ready for releasing
+on the networks.  Adding the hard returns et. al. is an easy
+part of that process, so don't feel obliged.
+
+Actually, in 1994 we will have to cut this to five hours, or
+your erstwhile editor will die under the strain.
+
+Also, for those concerned about space. . .even if an average
+paragraph in your book is only 100 characters, the additions
+of the hard returns will only make the book a percent longer
+in the end.
+
+
+
+We would like to receive these files in a PLAIN ASCII format
+and if compressed, please use ZIP if you can.  We could help
+you find it, if necessary.  We prefer not to use TAR and Z--
+but we will if necessary. . .we would prefer to receive just
+one large PLAIN ASCII file and ZIP it ourselves, rather than
+the various chapters, subdirectories, etc. with TAR.Z files.
+
+Please name files with standard DOS filename.ext,
+that is eight character filname and three for extension.
+
+---------------------------------------------------------------------------
+
+*General suggestions for the preparations of Project Gutenberg Etexts*
+
+In more detail than what was presented above.
+
+Editing policy for margination/widows/orphans is at bottom.
+
+Your suggestions for rewrites of this file gratefully accepted.
+
+
+0.  Please put your name, email, and other contact information
+    INSIDE THE FILES YOU SEND, AT THE TOP.  You may not believe
+    how often we get files and cannot contact the sender to get
+    details on the edition, etc.
+
+1.  Let us do the copyright clearance for you.
+
+2.  Remove vestigial traces of paper publishing.
+    A.  Page numbers [maybe the last thing to go, for reference]
+        [sometimes they are required, so we leave them in]
+    B.  Hyphens at the end of lines, unless true hyphenated word
+    C.  Widows and orphans [at page, paragraph, and line levels]
+    D.  Remove or mark typos. [but not intentional misspellings,
+        and leave in intentionally bad grammar]
+
+Spacing:
+
+    E.  Two spaces after each sentence [watch for ! or ? that do
+        NOT end sentences, then use only one space].
+    F.  One blank line after each paragraph. [two cr/lf returns]
+        [If you can't do this easily, just separate each para
+        with "**" to simlate the "hard returns"]
+    G.  Two blank lines after each section [wide paper breaks]
+    H.  Four blank lines after each chapter
+    I.  Three blank lines after chapter headers.
+    J.  Elipses [word. . .] have no spaces before or after ".'s"
+        unless they end a sentence with four [. . . .  ] then it
+        is a sentence ending. . .with two spaces. . . .  Next is
+        a new sentence.
+    K.  Dashes will be--dashes--with no extra spaces around them
+        [this has been discussed at great length and changed one
+        or two times already.  I have heard great argumentations
+        from both sides [_I_ preferred the spaces] but I finally
+        decided on not having them because more people wanted it
+        that way and because it looked more like the books [also
+        it saves a few spaces here and there in the files].
+
+
+3.  Try for 99.9 to 99.99% accuracy.
+
+4.  Swap proofreading with others from the volunteers list, keep
+    your reading fresh. . .once you miss an error it is a likely
+    thing that you will miss it again.
+
+5.  Poems and indented quotations within paragraphs:
+    Please try to make this look as much like the book so it can
+    be determined by the reader whether this is a separate part,
+    part of the same paragraph or what.  Feel free to use indent
+    and blank lines to accomplish this.
+
+6.  Most people use "quotes" but those who are sticklers for
+    ``open'' and ``close'' quotes use these.  Gets hairy if you say:
+
+    Harry said, ``'Twas the night before Christmas''
+    Harry said, "'Twas the night before Christmas"  is fine,
+    [not to mention that many keyboards and programs require
+    an extra ` to get one on the screen, so right now I have
+    to type ```` to get just `` on the screen.  When a doubt
+    occurs, just do what you think the average searcher goes
+    searching for.  Please include a note at the top of your
+    files indicating any of these you were unsure about.
+
+
+What we need most in proofreading are people to readjust those margins
+after the hyphens have been removed, and to adjust line lengths in the
+places where phrases, lines, and paragraphs have widows and orphans.
+
+We try to average 65, with 55 to 75 being short and long
+other than for emergencies, which will extend to 51 to 79.
+
+If this it NOT what you want to do, PLEASE don't let me force you into
+such a thing.  It is something I can do, and can probably teach others
+to do, but I STRONGLY prefer NOT to ask people to do slave labor.  The
+editing of this nature makes the Etexts much easier to read and search
+with nearly any program and computer, which is a major part of Project
+Gutenberg's goal. . .to get the books to EVERYONE.
+
+I know that I have a particular talent for margination, that comes out
+without apparent effort sometimes, as you might notice in the message.
+That talent is probably the only reason I ever decided this editing is
+possible, but I CAN tell you that I can't do more than about 100 pages
+a day of it, and that in eight separate shifts with rest in between.
+
+However, when I think of the millions or billions of people who should
+be able to use these books only one decade from now [after 22 years on
+the job] it is hard for me NOT to do this editing, as I think Etext is
+going to be a much better medium than paper ever was and should not be
+relegated to "copying paper" inclusive of all the problems paper might
+cause as a medium [even though we are used to them].  Some scholars in
+the Etext and paper reprint field even feel that typographical errors,
+along with hyphenation and pagination, should be preserved.
+
+Etext as developed and distributed by Project Gutenberg since 1971 was
+never intended to be a copy of a paper or a parchment [remember, first
+Project Gutenberg Etext was typed in from parchment replicas of the US
+Declaration of Independence].
+
+The major puposes of Project Gutenberg have always been:
+
+1.  to encourage the creation and distribution of electronic texts for
+    the general audience.
+
+2.  to provide these Etexts in a manner available to everyone in terms
+    of price and accessibility [i.e. no special hardware or software],
+    and no price tag attached to the Etexts themselves.
+
+3.  to make the Etexts as readily usable as possible, with no forms or
+    other paperwork required, and as easily readable to the human eyes
+    as to computer programs, and in fact, more readable than paper.
+
+4.  to encourage the doubling of creation and distribution every year,
+    so as to put 10,000 Etexts into general circulation by December 31
+    of the year 2001.
+
+
+For those of you who are not terribly interested in the editing of the
+books into formats to improve onscreen reading and searchin, you might
+want to stop here, as the following pertains mostly to editing in this
+new methodology.  Hopefully, Etexts will allow us to exorcise the old,
+no longer necessary methods the publishers have used to get more words
+on to fewer pages, and to eliminate end of line hyphenations, and also
+to reconnect many phrases and sentences that were previously broken up
+in this same process of moving away from manuscript form.  Please also
+realize that the examples below will look as if they orginally had the
+ragged margination you see here, while a quick look at the paper books
+will show you their marginations were perfectly neat.  This is part of
+the same process called "proportional spacing" in which the publishers
+make an even greater effort to adjust the words to their own formats--
+a process in which the letters are squeezed more closely together, for
+the purpose of saving more paper, or sometimes spread further apart to
+eliminate a particularly awful phraseology or "widow/orphan" problem.
+
+Eventually authors will finally have control over their own works, and
+will actually be able to create their books in finished published form
+just the way they want them.
+
+
+For those books we already have in print and in Etext, we hope to help
+create editions that are more readable, by trying to a job of "reverse
+engineering" to arrive at a book somewhat more resembling what authors
+intended in the first place.  Given the information authors have given
+us in response to our questions about how the printed book looked in a
+comparison to what they had intended, it is HIGHLY UNLIKLEY that these
+efforts are going to be exactly what the authors had in mind, but this
+should not keep us from trying to move in that direction.
+
+
+New editing policy for margination/widows/orphans.
+
+Here is an example of an original paragraph from the introduction
+to The House of Seven Gables, followed by two possible revisions:
+
+As I received it after being edited and proofed several times:
+
+In September of the year during the February of which Hawthorne
+had completed "The Scarlet Letter," he began "The House of the
+Seven Gables."  Meanwhile, he had removed from Salem to Lenox,
+in Berkshire County, Massachusetts, where he occupied with his
+family a small red wooden house, still standing at the date of
+this edition, near the Stockbridge Bowl.
+
+The margins in that paragraph are very even, nearly perfect as
+a matter of fact, with only the first line haveing 63 letters,
+and the rest having 62.  However the title of the book is done
+in such a manner as to leave two words on the next line, which
+is NOT a real flaw, I am only doing this as an example:
+
+Here is another margination of the same paragraph which I have
+chosen as a rather extreme example, so you can easily see what
+has been under discussion for so long.
+
+In September of the year during the February of which Hawthorne had
+completed "The Scarlet Letter," he began "The House of the Seven Gables."
+Meanwhile, he had removed from Salem to Lenox, in Berkshire County,
+Massachusetts, where he occupied with his family a small red wooden house,
+still standing at the date of this edition, near the Stockbridge Bowl.
+
+This margination is much more ragged, with an average of about
+70 characters per line, with the longest being 74 and shortest
+of a length of 67.  Thus, no line is longer than three letters
+longer than 71, and no line is shorter than than amount.  This
+is pretty good aritmetically, probably better than we will get
+on the average, in our average book.
+
+However, the point of all this effort was to get the phrases a
+bit more cohesive, so that every line except one ended in some
+punctuation mark, and made reasonable sense.  Of course, I was
+stumped by the long word Massachusetts, and ended up with this
+word separating towns and county on one line, and state on the
+next line.  In a perfect world, I could have rewritten all the
+material to get the same meaning across, and with margins that
+were entirely justified. . .but we all know that is beyond the
+scope of what we are talking about.  The books have to remain,
+and should remain, the most accurate transcription of what any
+author was trying to say, but we can improve the publications,
+by doing a better job of editing, of proofreading, and margins
+of course, as we have been discussing.
+
+The point of all this is to try to eliminate widows or orphans
+as they are called. . .cases in which one word is left on that
+line, while the main clause, phrase, sentence, paragraph, page
+or whatever is left above, or on the previous page.
+
+What we would LIKE to do, is to make Project Gutenberg books a
+bit easier to read, and much easier for search programs with a
+policy of editing that eliminates as much of the hyphenations,
+paginations, and marginations of the publishing process; leave
+a book that is not shredding the words at the ends of lines so
+as to save one or two pages at the end of the book. . .this is
+more valuable than you might think to a publisher for whom the
+process could save millions of pages per year, but it is going
+the way of the dinosaur as publication is moving from paper to
+Etext publications.
+
+Adding blank lines between paragraphs makes them a much easier
+target for the human eye, and takes only one character:  while
+indentation takes from two to ten characters in the Etexts our
+staff has already prepared.  Thus we can save space while eyes
+are given their just due, words that are easy to read AND easy
+to see in their proper phraseology.
+
+I admit that adding a blank space between sentences takes up a
+bit more space, but it makes the sentences so much easier when
+you are reading them.  Of course, unless indentation is slight
+AND there are lots of sentences per paragraph, the whole thing
+comes out taking less space.
+
+This is something new, and we are still working on it; example
+paragraphs such as the one above cannot substitute for example
+books, such as the Edgar Rice Burroughs Mars series which were
+recently posted, and the Red Badge of Courage.  Compare a book
+from the library to the Project Gutenberg Edition and you will
+see just how many changes we have made and how much better the
+book reads.  Of course, those who are inculcated to reading in
+the publishers' styles to the maximum degree will feel less of
+an improvement, simply because they have learned to ignore all
+of the extra hassles created by publishers' styles, which were
+developed to benefit the publishers, and not to made the books
+more readable.
+
+The long section that used to be here, concering remargination
+techniques, has been deleted for now.  We are experimenting on
+a new set of programs that remarginate, and also help with any
+of a number of other aspects of creating a more readable Etext
+for onscreen reading and searching.  If you do see any awkward
+margination, please bring it to our attention, along with more
+normal kinds of errors that should be corrected.
+
+Once again our many thanks to all the volunteers who have done
+so much to help Project Gutenberg bring Etext to the world.
