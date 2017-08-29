@@ -18,22 +18,29 @@ void findInFile(FILE *fp , char* p)
          a=a+1;
          if(p[j]=='\0')
           flag=1;
-         while(p[j]!='\0'){
-            if(buffer[a]==p[j] || p[j]=='?')
-            {
-              a++;
-              j++;
-              flag=1;
-              continue;
-            }
-            else
-            {
-              flag=0;
-              break;
-            }
+         else
+         {
+           while(p[j]!='\0')
+           {
+              if(buffer[a]==p[j] || p[j]=='?')
+              {
+                a++;
+                j++;
+                flag=1;
+                continue;
+              }
+              else
+              {
+                flag=0;
+                break;
+              }
+           }
          }
          if(flag)
+         {
             printf("%c%d%c %s",'<',lineNumber,'>',buffer);
+            break;
+         }
        }
        i++;
      }
