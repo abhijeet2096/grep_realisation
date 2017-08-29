@@ -12,14 +12,14 @@ void findInFile(FILE *fp , char* p)
      {
        j=0;
        a=i;
-       if(buffer[a]==p[j])
+       if(buffer[a]==p[j] || p[j]=='?')
        {
          j++;
          a=a+1;
          if(p[j]=='\0')
           flag=1;
          while(p[j]!='\0'){
-            if(buffer[a]==p[j])
+            if(buffer[a]==p[j] || p[j]=='?')
             {
               a++;
               j++;
