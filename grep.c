@@ -20,6 +20,7 @@ int main(int argc, char *argv[]){
   char file_copy2[50];
   char file_copy3[50];
     char file_copy4[50];
+      char file_copy5[50];
   char file_output[50];
   struct stat st = {0};
 
@@ -90,6 +91,7 @@ int main(int argc, char *argv[]){
                  finalcat[km] = (char *)malloc(50*sizeof(char));
                 }
                  e = opendir(file_copy4);
+
                  if(e==NULL){
                    printf ("Cannot open directory '%s'\n", file_copy4);
                     return 1;
@@ -107,7 +109,10 @@ int main(int argc, char *argv[]){
 
                       if(strstr(dir->d_name,".txt"))
                       {
-                           strcpy(finalcat[cnt],dir->d_name);
+                          strcpy(file_copy5,file_copy4);
+                         strcat(file_copy5,"/");
+                          strcat(file_copy5,dir->d_name);
+                           strcpy(finalcat[cnt],file_copy5);
                            //strcat(finalcat[cnt],"\0");
                            cnt++;
                       }
