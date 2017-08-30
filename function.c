@@ -31,7 +31,7 @@ void findInFile(FILE *fp , char* p,int choice,FILE *fp1)
             //continue;
 
           }
-          printf("\nprocessing");
+        //  printf("\nprocessing");
            j++;
            a=a+1;
           //  printf("ABhijeet");

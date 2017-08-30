@@ -53,19 +53,27 @@ int main(int argc, char *argv[]){
                  strcat(file_copy,dir->d_name);
                   strcpy(file_copy3,file_copy2);
                   strcat(file_copy3,dir->d_name);
-                 pid_t pid =0 ;//fork();
-                 if(1)
-                  {
-                     fr = fopen(file_copy, "r");
-                     fp = fopen(file_copy3, "wb");
-                     fprintf(fp,"%c%s%c\n",'<', dir->d_name,'>');
-                     findInFile(fr,argv[2],1,fp);
-                     fclose(fr);
-                     fclose(fp);
-                  }
-                  else if(pid < 0)
+                 pid_t pid =fork();
+
+                  if(pid < 0)
                   {
                     printf("\nForking Failed !\n");
+                    abort();
+                  }
+                  else  if(pid==0)
+                   {
+                      fr = fopen(file_copy, "r");
+                      fp = fopen(file_copy3, "wb");
+                      fprintf(fp,"%c%s%c\n",'<', dir->d_name,'>');
+                      findInFile(fr,argv[3],1,fp);
+                      fclose(fr);
+                      fclose(fp);
+                      _exit(0);
+                   }
+                  else
+                  {
+                    sleep(1);
+                    printf("\nDone !");
                   }
                }
              }
