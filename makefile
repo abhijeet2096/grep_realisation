@@ -12,6 +12,7 @@ function.o : function.c function.h
 
 refresh :
 	rm -f *.o
+	rm -f /testcase/Output/*
 
 clean :
 	rm -f *.o

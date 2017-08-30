@@ -3,13 +3,14 @@
 clock_t start, end;
 double cpu_time_used;
 
-void findInFile(FILE *fp , char* p)
+void findInFile(FILE *fp , char* p,int choice,FILE *fp1)
 {
   start = clock(); //starting clock
   char buffer[15000];
   int lineNumber = 0;
   int lineMatched=0;
   int i=0,j=0,a=0,flag=0;
+
     while(fgets(buffer,15000,fp) != NULL)
     {
       i=0;
@@ -21,16 +22,19 @@ void findInFile(FILE *fp , char* p)
          a=i;
          if(buffer[a]==p[j] || p[j]=='?')
          {
+
            if(!((buffer[a] >= 'a'&&buffer[a]<='z') || (buffer[a] >= '0'&&buffer[a]<='9') || (buffer[a] >= 'A'&&buffer[a]<='Z')))
           {
             flag=0;
             j++;
             a++;
-            break;
+            //continue;
 
           }
+          printf("\nprocessing");
            j++;
            a=a+1;
+          //  printf("ABhijeet");
            if(p[j]=='\0')
             flag=1;
            else
@@ -79,17 +83,36 @@ void findInFile(FILE *fp , char* p)
            }
            if(flag)
            {
-              printf("%c%d%c %s",'<',lineNumber,'>',buffer);
+            if(choice)
+              {
+                fprintf(fp1,"%c%d%c %s",'<',lineNumber,'>',buffer);
                 lineMatched++;
+                break;
+              }
+            else
+            {
+              printf("%c%d%c %s",'<',lineNumber,'>',buffer);
+              lineMatched++;
               break;
+            }
            }
          }
          i++;
+
        }
+
     }
       end = clock();
      cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-     printf("\n%d of lines matched time-taken-for-execution is %f  (in sec)\n",lineMatched,cpu_time_used);
+     if(choice==0)
+       {
+         printf("\n%d of lines matched time-taken-for-execution is %f  (in sec)\n",lineMatched,cpu_time_used);
+       }
+       else
+       {
+        // printf("choice :: %d ", choice);
+         fprintf(fp1,"\n%d of lines matched time-taken-for-execution is %f  (in sec)\n",lineMatched,cpu_time_used);
+       }
 }
 
 void findinString(char *p){
