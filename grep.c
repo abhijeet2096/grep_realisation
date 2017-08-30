@@ -9,7 +9,11 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
+void merger(char ** finalcat){
+  execvp("/bin/cat",finalcat);
+}
 
 int main(int argc, char *argv[]){
   int i;
@@ -129,7 +133,19 @@ int main(int argc, char *argv[]){
                   for (int km = 0; km < no_output; km++) {
                       printf("\n%s",finalcat[km]);
                   }
-                    execvp("/bin/cat",finalcat);
+                   pid_t  pid =fork();
+                    if(pid < 0){
+                      printf("\nMerging Failed !\n");
+                      abort();
+                    }
+                    else if(pid==0){
+                      merger(finalcat);
+                      _exit(0);
+                    }
+                    else{
+                        wait(NULL);
+                        printf("\nMerging Done !");
+                    }
                   }
 
          }
@@ -236,6 +252,8 @@ int main(int argc, char *argv[]){
      printf("\nfor example : $./grep.c -d p?o input.txt");
      printf("\n\nListed flags for this program !");
      printf("\n\n\n1. -d : searches pattern in that directory");
+     printf("\n\n\n2. -d -p : searches pattern in that directory with parelel processing using fork() methord !");
+     printf("\n\n\n3. -d -p -m : searches pattern in that directory with parelel processing using fork() methord and calling merger");
      printf("\n\nEnd Of Manual !");
    }
 
