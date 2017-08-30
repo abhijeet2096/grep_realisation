@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 
         if((argc == 6 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-p")&& !strcmp(argv[3],"-m"))||(argc == 5 && !strcmp(argv[1],"-p") && !strcmp(argv[2],"-d")&& !strcmp(argv[3],"-m"))){
               DIR *d,*e;
-              char finalcat[2000];
+            int no_output =0;
               //printf("\nmaking directory");
               struct dirent *dir;
               strcpy(file,argv[5]);
@@ -57,6 +57,7 @@ int main(int argc, char *argv[]){
                        strcat(file_copy,dir->d_name);
                         strcpy(file_copy3,file_copy2);
                         strcat(file_copy3,dir->d_name);
+                          no_output++;
                        pid_t pid =fork();
 
                         if(pid < 0)
@@ -70,6 +71,7 @@ int main(int argc, char *argv[]){
                             fp = fopen(file_copy3, "wb");
                             fprintf(fp,"%c%s%c\n",'<', dir->d_name,'>');
                             findInFile(fr,argv[4],1,fp);
+
                             fclose(fr);
                             fclose(fp);
                             _exit(0);
@@ -83,6 +85,10 @@ int main(int argc, char *argv[]){
                    }
                    closedir(d);
                }
+                char  **finalcat = (char**)malloc(sizeof(char*)*(no_output+1));;
+                for (int km = 0; km < no_output+1; km++) {
+                 finalcat[km] = (char *)malloc(50*sizeof(char));
+                }
                  e = opendir(file_copy4);
                  if(e==NULL){
                    printf ("Cannot open directory '%s'\n", file_copy4);
@@ -91,26 +97,34 @@ int main(int argc, char *argv[]){
                if(e)
                 {
                   dir = readdir(e);
-                  if(strstr(dir->d_name,".txt"))
-                  {
-                    //  printf("\n%s",dir->d_name);
-                       strcpy(finalcat,dir->d_name);
-                       strcat(finalcat," ");
-                  }
+                  int cnt = 0;
+                  strcpy(finalcat[cnt],"cat");
+                  //cnt++;
+                  //strcat(finalcat[cnt],"\0");
+                  cnt++;
                     while((dir = readdir(e)) != NULL)
                     {
 
                       if(strstr(dir->d_name,".txt"))
                       {
-                        //  printf("\n%s",dir->d_name);
-                           strcat(finalcat,dir->d_name);
-                           strcat(finalcat," ");
+                           strcpy(finalcat[cnt],dir->d_name);
+                           //strcat(finalcat[cnt],"\0");
+                           cnt++;
                       }
                     }
-                    strcat(finalcat,"\0");
-                  //  printf("\n\n%s",finalcat);
+                    finalcat[cnt]=NULL;
+                  //   strcpy(finalcat[cnt]," > ");
+                  // //  strcat(finalcat[cnt],"\0");
+                  //   cnt++;
+                  //   strcpy(finalcat[cnt],"output.txt ");
+                  //   //strcat(finalcat[cnt],"\0");
+                    // cnt++;
+                    // strcpy(finalcat[cnt],"0");
 
-                    execvp("cat",finalcat);
+                  for (int km = 0; km < no_output; km++) {
+                      printf("\n%s",finalcat[km]);
+                  }
+                    execvp("/bin/cat",finalcat);
                   }
 
          }
