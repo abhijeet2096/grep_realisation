@@ -19,10 +19,102 @@ int main(int argc, char *argv[]){
   char file_copy[50];
   char file_copy2[50];
   char file_copy3[50];
+    char file_copy4[50];
   char file_output[50];
   struct stat st = {0};
 
-  if((argc == 5 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-p"))||(argc == 5 && !strcmp(argv[1],"-p") && !strcmp(argv[2],"-d"))){
+        if((argc == 6 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-p")&& !strcmp(argv[3],"-m"))||(argc == 5 && !strcmp(argv[1],"-p") && !strcmp(argv[2],"-d")&& !strcmp(argv[3],"-m"))){
+              DIR *d,*e;
+              char finalcat[2000];
+              //printf("\nmaking directory");
+              struct dirent *dir;
+              strcpy(file,argv[5]);
+              strcat(file,"/");
+              strcpy(file_copy2,file);
+              strcat(file_copy2,"Output");
+              strcpy(file_copy4,file_copy2);
+              //strcat(file_copy4,"/Output/");
+              d = opendir(argv[5]);
+
+              if(d==NULL){
+                printf ("Cannot open directory '%s'\n", argv[4]);
+                 return 1;
+              }
+              if (stat(file_copy2, &st) == -1)
+              {
+                mkdir(file_copy2, 0700);
+                printf("\nMaking Output directory");
+              }
+
+              strcat(file_copy2,"/Result_");
+              if (d)
+               {
+                   while ((dir = readdir(d)) != NULL)
+                   {
+
+                     if(strstr(dir->d_name,".txt")){
+                       strcpy(file_copy,file);
+                       strcat(file_copy,dir->d_name);
+                        strcpy(file_copy3,file_copy2);
+                        strcat(file_copy3,dir->d_name);
+                       pid_t pid =fork();
+
+                        if(pid < 0)
+                        {
+                          printf("\nForking Failed !\n");
+                          abort();
+                        }
+                        else  if(pid==0)
+                         {
+                            fr = fopen(file_copy, "r");
+                            fp = fopen(file_copy3, "wb");
+                            fprintf(fp,"%c%s%c\n",'<', dir->d_name,'>');
+                            findInFile(fr,argv[4],1,fp);
+                            fclose(fr);
+                            fclose(fp);
+                            _exit(0);
+                         }
+                        else
+                        {
+                          //sleep(1);
+                          printf("\nDone !");
+                        }
+                     }
+                   }
+                   closedir(d);
+               }
+                 e = opendir(file_copy4);
+                 if(e==NULL){
+                   printf ("Cannot open directory '%s'\n", file_copy4);
+                    return 1;
+                 }
+               if(e)
+                {
+                  dir = readdir(e);
+                  if(strstr(dir->d_name,".txt"))
+                  {
+                    //  printf("\n%s",dir->d_name);
+                       strcpy(finalcat,dir->d_name);
+                       strcat(finalcat," ");
+                  }
+                    while((dir = readdir(e)) != NULL)
+                    {
+
+                      if(strstr(dir->d_name,".txt"))
+                      {
+                        //  printf("\n%s",dir->d_name);
+                           strcat(finalcat,dir->d_name);
+                           strcat(finalcat," ");
+                      }
+                    }
+                    strcat(finalcat,"\0");
+                  //  printf("\n\n%s",finalcat);
+
+                    execvp("cat",finalcat);
+                  }
+
+         }
+        else if((argc == 5 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-p"))||(argc == 5 && !strcmp(argv[1],"-p") && !strcmp(argv[2],"-d"))){
         DIR *d,*e;
         //printf("\nmaking directory");
         struct dirent *dir;
@@ -72,7 +164,7 @@ int main(int argc, char *argv[]){
                    }
                   else
                   {
-                    sleep(1);
+                    //sleep(1);
                     printf("\nDone !");
                   }
                }
