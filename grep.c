@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 
 void merger(char ** finalcat){
+  freopen("output.txt","w",stdout);
   execvp("/bin/cat",finalcat);
 }
 
@@ -144,8 +145,10 @@ int main(int argc, char *argv[]){
                     }
                     else{
                         wait(NULL);
+                        closedir(e);
                         printf("\nMerging Done !");
                     }
+
                   }
 
          }
