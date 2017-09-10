@@ -3,6 +3,18 @@
 clock_t start, end;
 double cpu_time_used;
 
+void *findInFileThread(void *arg1){
+  struct argumentList *arg = (struct argumentList *)arg1;
+  //arg = (struct argumentList *)arg1;
+  FILE *fr = arg->fr;
+  FILE *fp= arg->fp;
+  int choice = arg->choice;
+  char pattern[100];
+  strcpy(pattern,arg->pattern);
+
+  findInFile(fr,pattern,choice,fp);
+}
+
 void findInFile(FILE *fp , char* p,int choice,FILE *fp1)
 {
   start = clock(); //starting clock

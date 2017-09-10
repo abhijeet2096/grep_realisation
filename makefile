@@ -1,6 +1,6 @@
 object = grep.o function.o
-compiler = g++
-flags = -o
+compiler = gcc
+flags = -lpthread -o 	
 target = grep
 $(target) : $(object)
 	$(compiler) $(flags) $(target) $(object)

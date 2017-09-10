@@ -1,20 +1,16 @@
 //ABhijeet sharma
 //version 1.1
 //dated :: 29-08-2017
-#include <stdio.h>
-#include <dirent.h>
+
+
 #include "function.h"
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
 
 void merger(char ** finalcat){
   freopen("output.txt","w",stdout);
   execvp("/bin/cat",finalcat);
 }
+
+
 
 int main(int argc, char *argv[]){
   int i;
@@ -29,17 +25,130 @@ int main(int argc, char *argv[]){
   char file_output[50];
   struct stat st = {0};
 
-        if((argc == 6 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-p")&& !strcmp(argv[3],"-m"))||(argc == 5 && !strcmp(argv[1],"-p") && !strcmp(argv[2],"-d")&& !strcmp(argv[3],"-m"))){
+  if((argc == 6 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-t")&& !strcmp(argv[3],"-m"))){
+          DIR *d,*e;
+        int no_output =0;
+          struct dirent *dir;
+          strcpy(file,argv[5]);
+          strcat(file,"/");
+          strcpy(file_copy2,file);
+          strcat(file_copy2,"Output");
+          strcpy(file_copy4,file_copy2);
+          d = opendir(argv[5]);
+
+          if(d==NULL){
+            printf ("Cannot open directory '%s'\n", argv[4]);
+             return 1;
+          }
+          if (stat(file_copy2, &st) == -1)
+          {
+            mkdir(file_copy2, 0700);
+            printf("\nMaking Output directory");
+          }
+
+          struct argumentList *ptr_arg = (struct argumentList*)malloc(sizeof(struct argumentList));
+
+          strcat(file_copy2,"/Result_");
+          if (d)
+           {
+               while ((dir = readdir(d)) != NULL)
+               {
+
+                 if(strstr(dir->d_name,".txt")){
+                   strcpy(file_copy,file);
+                   strcat(file_copy,dir->d_name);
+                    strcpy(file_copy3,file_copy2);
+                    strcat(file_copy3,dir->d_name);
+                      no_output++;
+                    pthread_t tid;
+
+
+                        fr = fopen(file_copy, "r");
+                        fp = fopen(file_copy3, "wb");
+                        fprintf(fp,"%c%s%c\n",'<', dir->d_name,'>');
+                        //alocating space to pointer
+
+
+                        //passing argument in structure :
+                        ptr_arg->choice = 1;
+                        strcpy(ptr_arg->pattern,argv[4]);
+                        ptr_arg->fp = fp;
+                        ptr_arg->fr = fr;
+                        //findInFile(fr,argv[4],1,fp);
+                        pthread_create(&tid, NULL,&findInFileThread,ptr_arg);
+                        pthread_join(tid,NULL);
+                        fclose(fr);
+                        fclose(fp);
+                        _exit(0);
+
+                 }
+               }
+               pthread_exit(NULL);
+               closedir(d);
+           }
+          /*  char  **finalcat = (char**)malloc(sizeof(char*)*(no_output+1));;
+            for (int km = 0; km < no_output+1; km++) {
+             finalcat[km] = (char *)malloc(50*sizeof(char));
+            }
+             e = opendir(file_copy4);
+
+             if(e==NULL){
+               printf ("Cannot open directory '%s'\n", file_copy4);
+                return 1;
+             }
+           if(e)
+            {
+              dir = readdir(e);
+              int cnt = 0;
+              strcpy(finalcat[cnt],"cat");
+              cnt++;
+                while((dir = readdir(e)) != NULL)
+                {
+
+                  if(strstr(dir->d_name,".txt"))
+                  {
+                      strcpy(file_copy5,file_copy4);
+                     strcat(file_copy5,"/");
+                      strcat(file_copy5,dir->d_name);
+                       strcpy(finalcat[cnt],file_copy5);
+                       cnt++;
+                  }
+                }
+                finalcat[cnt]=NULL;
+
+              for (int km = 0; km < no_output; km++) {
+                  printf("\n%s",finalcat[km]);
+              }
+               pid_t  pid =fork();
+                if(pid < 0){
+                  printf("\nMerging Failed !\n");
+                  abort();
+                }
+                else if(pid==0){
+                  merger(finalcat);
+                  _exit(0);
+                }
+                else{
+                    wait(NULL);
+                    closedir(e);
+                    printf("\nMerging Done !");
+                }
+
+              }
+                */
+     }
+
+
+
+      else if((argc == 6 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-p")&& !strcmp(argv[3],"-m"))||(argc == 6 && !strcmp(argv[1],"-p") && !strcmp(argv[2],"-d")&& !strcmp(argv[3],"-m"))){
               DIR *d,*e;
             int no_output =0;
-              //printf("\nmaking directory");
               struct dirent *dir;
               strcpy(file,argv[5]);
               strcat(file,"/");
               strcpy(file_copy2,file);
               strcat(file_copy2,"Output");
               strcpy(file_copy4,file_copy2);
-              //strcat(file_copy4,"/Output/");
               d = opendir(argv[5]);
 
               if(d==NULL){
@@ -84,7 +193,6 @@ int main(int argc, char *argv[]){
                          }
                         else
                         {
-                          //sleep(1);
                           printf("\nDone !");
                         }
                      }
@@ -106,8 +214,6 @@ int main(int argc, char *argv[]){
                   dir = readdir(e);
                   int cnt = 0;
                   strcpy(finalcat[cnt],"cat");
-                  //cnt++;
-                  //strcat(finalcat[cnt],"\0");
                   cnt++;
                     while((dir = readdir(e)) != NULL)
                     {
@@ -118,18 +224,10 @@ int main(int argc, char *argv[]){
                          strcat(file_copy5,"/");
                           strcat(file_copy5,dir->d_name);
                            strcpy(finalcat[cnt],file_copy5);
-                           //strcat(finalcat[cnt],"\0");
                            cnt++;
                       }
                     }
                     finalcat[cnt]=NULL;
-                  //   strcpy(finalcat[cnt]," > ");
-                  // //  strcat(finalcat[cnt],"\0");
-                  //   cnt++;
-                  //   strcpy(finalcat[cnt],"output.txt ");
-                  //   //strcat(finalcat[cnt],"\0");
-                    // cnt++;
-                    // strcpy(finalcat[cnt],"0");
 
                   for (int km = 0; km < no_output; km++) {
                       printf("\n%s",finalcat[km]);
@@ -257,6 +355,7 @@ int main(int argc, char *argv[]){
      printf("\n\n\n1. -d : searches pattern in that directory");
      printf("\n\n\n2. -d -p : searches pattern in that directory with parelel processing using fork() methord !");
      printf("\n\n\n3. -d -p -m : searches pattern in that directory with parelel processing using fork() methord and calling merger");
+     printf("\n\n\n4. -d -t -m : searches pattern in that directory with parelel processing using Pthread methord and calling merger");
      printf("\n\nEnd Of Manual !");
    }
 
