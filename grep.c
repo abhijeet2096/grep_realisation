@@ -24,9 +24,10 @@ int main(int argc, char *argv[]){
       char file_copy5[50];
   char file_output[50];
   struct stat st = {0};
+  int cnt=0;
 
   if((argc == 6 && !strcmp(argv[1],"-d") && !strcmp(argv[2],"-t")&& !strcmp(argv[3],"-m"))){
-          DIR *d,*e;
+          DIR *d,*e,*f;
         int no_output =0;
           struct dirent *dir;
           strcpy(file,argv[5]);
@@ -48,6 +49,25 @@ int main(int argc, char *argv[]){
 
           struct argumentList *ptr_arg = (struct argumentList*)malloc(sizeof(struct argumentList));
 
+          f = opendir(argv[5]);
+          if(f==NULL){
+            printf ("Cannot open directory '%s'\n", file_copy4);
+             return 1;
+          }
+          if (f)
+           {
+               while ((dir = readdir(f)) != NULL)
+               {
+                  if(strstr(dir->d_name,".txt"))
+                  {
+                    cnt++;
+                  }
+               }
+           }
+           closedir(f);
+           pthread_t tid[cnt];
+
+           int jk = 0;
           strcat(file_copy2,"/Result_");
           if (d)
            {
@@ -60,7 +80,7 @@ int main(int argc, char *argv[]){
                     strcpy(file_copy3,file_copy2);
                     strcat(file_copy3,dir->d_name);
                       no_output++;
-                    pthread_t tid;
+
 
 
                         fr = fopen(file_copy, "r");
@@ -75,18 +95,26 @@ int main(int argc, char *argv[]){
                         ptr_arg->fp = fp;
                         ptr_arg->fr = fr;
                         //findInFile(fr,argv[4],1,fp);
-                        pthread_create(&tid, NULL,&findInFileThread,ptr_arg);
-                        pthread_join(tid,NULL);
+                        pthread_create(&tid[jk], NULL,&findInFileThread,ptr_arg);
+
+
+                        jk++;
                         fclose(fr);
                         fclose(fp);
                         _exit(0);
 
                  }
                }
-               pthread_exit(NULL);
+
+               //pthread_exit(NULL);
                closedir(d);
+               for (jk = 0; jk < cnt; jk++)
+               {
+                  pthread_join(tid[jk],NULL);
+               }
            }
-          /*  char  **finalcat = (char**)malloc(sizeof(char*)*(no_output+1));;
+
+            char  **finalcat = (char**)malloc(sizeof(char*)*(no_output+1));;
             for (int km = 0; km < no_output+1; km++) {
              finalcat[km] = (char *)malloc(50*sizeof(char));
             }
@@ -99,7 +127,7 @@ int main(int argc, char *argv[]){
            if(e)
             {
               dir = readdir(e);
-              int cnt = 0;
+              cnt = 0;
               strcpy(finalcat[cnt],"cat");
               cnt++;
                 while((dir = readdir(e)) != NULL)
@@ -135,7 +163,7 @@ int main(int argc, char *argv[]){
                 }
 
               }
-                */
+
      }
 
 
