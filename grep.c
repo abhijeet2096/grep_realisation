@@ -5,6 +5,9 @@
 
 #include "function.h"
 
+clock_t start, end;
+double cpu_time_used;
+
 void merger(char ** finalcat){
   freopen("output.txt","w",stdout);
   execvp("/bin/cat",finalcat);
@@ -65,12 +68,15 @@ int main(int argc, char *argv[]){
                }
            }
            closedir(f);
-           pthread_t tid[cnt];
+           pthread_t *tid = (pthread_t *)malloc(cnt*sizeof(pthread_t));
 
+           FILE *fr_t[cnt];
+           FILE *fp_t[cnt];
            int jk = 0;
           strcat(file_copy2,"/Result_");
           if (d)
            {
+             start = clock();
                while ((dir = readdir(d)) != NULL)
                {
 
@@ -83,37 +89,49 @@ int main(int argc, char *argv[]){
 
 
 
-                        fr = fopen(file_copy, "r");
-                        fp = fopen(file_copy3, "wb");
-                        fprintf(fp,"%c%s%c\n",'<', dir->d_name,'>');
+                        fr_t[jk] = fopen(file_copy, "r");
+                        fp_t[jk] = fopen(file_copy3, "wb");
+                        fprintf(fp_t[jk],"%c%s%c\n",'<', dir->d_name,'>');
                         //alocating space to pointer
 
 
                         //passing argument in structure :
                         ptr_arg->choice = 1;
                         strcpy(ptr_arg->pattern,argv[4]);
-                        ptr_arg->fp = fp;
-                        ptr_arg->fr = fr;
+                        ptr_arg->fp = fp_t[jk];
+                        ptr_arg->fr = fr_t[jk];
                         //findInFile(fr,argv[4],1,fp);
-                        pthread_create(&tid[jk], NULL,&findInFileThread,ptr_arg);
+                        int r = pthread_create(&tid[jk], NULL,&findInFileThread,ptr_arg);
+                        if(r)
+                          {
+                            printf("\n threading error !");
+                          }
+                        // pthread_join(tid[jk],NULL);
 
 
                         jk++;
-                        fclose(fr);
-                        fclose(fp);
-                        _exit(0);
-
+                        //_exit(0);
                  }
                }
 
-               //pthread_exit(NULL);
-               closedir(d);
-               for (jk = 0; jk < cnt; jk++)
-               {
-                  pthread_join(tid[jk],NULL);
-               }
-           }
 
+
+           }
+           closedir(d);
+           for (jk = 0; jk < cnt; jk++)
+           {
+              pthread_join(tid[jk],NULL);
+              fclose(fr_t[jk]);
+              fclose(fp_t[jk]);
+           }
+          end = clock();
+         cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+
+         printf("\n time-taken-for-execution  in threaded is %f  (in sec)\n",cpu_time_used);
+
+
+          pthread_exit(NULL);
+           /*
             char  **finalcat = (char**)malloc(sizeof(char*)*(no_output+1));;
             for (int km = 0; km < no_output+1; km++) {
              finalcat[km] = (char *)malloc(50*sizeof(char));
@@ -162,7 +180,7 @@ int main(int argc, char *argv[]){
                     printf("\nMerging Done !");
                 }
 
-              }
+              }*/
 
      }
 
